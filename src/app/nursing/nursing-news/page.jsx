@@ -15,8 +15,8 @@ const page = () => {
               <div className=' font-medium'>Nursing News</div>
               <Button text={"Add News"} />
             </div>
-            <div>
-              <div className="m-4 overflow-x-auto">
+            <div className='p-6'>
+              <div className="overflow-x-auto">
                 <table className="w-full text-sm border text-left">
                   <thead className="bg-gray-50 border-b">
                     <tr>
@@ -35,18 +35,18 @@ const page = () => {
                       <td className="px-6 py-4"><img className='w-14 h-14 rounded-md' src="/assets/news.png" alt="" /></td>
                       <td className="px-6 py-4">Children's Mental Health Awareness Week	</td>
                       <td className="px-6 py-4">10-Feb-2023</td>
-                      <td className="px-6 py-4"><BsCheckCircle className='text-blue-500 text-lg' /></td>
-                      <td className="px-6 py-4"><Button className={"bg-red-500"} text={"Unpublish"} /></td>
-                      <td className="px-6 py-4 flex items-center gap-6"><AiOutlineEye className='text-xl text-blue-500' />  <FiEdit className='text-lg text-blue-500' /> <AiOutlineDelete className='text-lg text-red-500 font-medium' /> </td>
+                      <td className="px-6 py-4"><BsCheckCircle className='text-accentGreen text-lg' /></td>
+                      <td className="px-6 py-4"><Button className={"bg-customeRed hover:bg-redHover"} text={"Unpublish"} /></td>
+                      <td className="px-6 py-4 flex items-center gap-6"><AiOutlineEye className='text-xl text-accentGreen' />  <FiEdit className='text-lg text-accentGreen' /> <AiOutlineDelete className='text-lg text-customeRed font-medium' /> </td>
                     </tr>
                     <tr className="bg-white border-b">
                       <td className="px-6 py-4">1</td>
                       <td className="px-6 py-4"><img className='w-14 h-14 rounded-md' src="/assets/news.png" alt="" /></td>
                       <td className="px-6 py-4">Children's Mental Health Awareness Week	</td>
                       <td className="px-6 py-4">10-Feb-2023</td>
-                      <td className="px-6 py-4"><BsCheckCircle className='text-blue-500 text-lg' /></td>
-                      <td className="px-6 py-4"><Button className={"bg-red-500"} text={"Unpublish"} /></td>
-                      <td className="px-6 py-4 flex items-center gap-6"><AiOutlineEye className='text-xl text-blue-500' />  <FiEdit className='text-lg text-blue-500' /> <AiOutlineDelete className='text-lg text-red-500 font-medium' /> </td>
+                      <td className="px-6 py-4"><BsCheckCircle className='text-accentGreen text-lg' /></td>
+                      <td className="px-6 py-4"><Button className={"bg-customeRed hover:bg-redHover"} text={"Unpublish"} /></td>
+                      <td className="px-6 py-4 flex items-center gap-6"><AiOutlineEye className='text-xl text-accentGreen' />  <FiEdit className='text-lg text-accentGreen' /> <AiOutlineDelete className='text-lg text-customeRed font-medium' /> </td>
                     </tr>
                   </tbody>
                 </table>

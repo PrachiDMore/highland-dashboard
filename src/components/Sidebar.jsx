@@ -1,8 +1,10 @@
+"use client"
 import React from 'react'
 import { RxDashboard } from 'react-icons/rx'
 import { VscGraph } from 'react-icons/vsc'
 import { FaRegCalendarCheck, FaRegHospital, FaUserMd, FaUserAlt } from 'react-icons/fa'
 import Link from 'next/link'
+import NavItem from './NavItem'
 
 const Sidebar = () => {
   return (
@@ -11,33 +13,84 @@ const Sidebar = () => {
         <div className='w-full h-20 flex justify-center items-center bg-white'>
           <img className='h-20' src="/assets/logo.png" alt="" />
         </div>
-        <div className='py-3 px-5 w-full custom-height bg-slate-900 text-white '>
-          <div className='flex items-center gap-3 text-gray-400'>
-            <RxDashboard />
-            <Link href={'/'} className='p-2 text-sm'>Dashboard</Link>
-          </div>
-          <div className='flex items-center gap-3 text-gray-400'>
-            <FaRegCalendarCheck />
-            <p className='p-2 text-sm'>Appointment</p>
-          </div>
-          <div className='flex items-center gap-3 text-gray-400'>
-            <FaRegHospital />
-            <p className='p-2 text-sm'>Hospital</p>
-          </div>
-          <div className='flex items-center gap-3 text-gray-400'>
-            <FaUserMd />
-            <p className='p-2 text-sm'>Nursing</p>
-          </div>
-          <div className='flex items-center gap-3 text-gray-400'>
-            <FaUserAlt />
-            <p className='p-2 text-sm'>User</p>
-          </div>
-          <div className='flex items-center gap-3 text-gray-400'>
-            <VscGraph />
-            <p className='p-2 text-sm'>Analytics</p>
-          </div>
+        <div className='py-3 px-5 w-full sidebar-height bg-slate-900  '>
+          <NavItem link={{
+            icon: <RxDashboard />,
+            url: "/",
+            title: "Dashboard"
+          }} />
+
+          <NavItem title={"Appointment"} icon={<FaRegCalendarCheck />} items={[
+            {
+              url: "/appointment/uncheck",
+              title: "New/Unchecked"
+            },
+            {
+              url: "/appointment/scheduled-today",
+              title: "Scheduled Today"
+            },
+            {
+              url: "/appointment/confirmed",
+              title: "Confirmed"
+            },
+            {
+              url: "/appointment/postponed",
+              title: "Postponed"
+            },
+            {
+              url: "/appointment/doctors",
+              title: "Doctors"
+            }
+          ]} />
+
+          <NavItem title={"Hospital"} icon={<FaRegHospital />} items={[
+            {
+              url: "/hospital/hospital-news",
+              title: "Hospital News"
+            },
+            {
+              url: "/hospital/feedback",
+              title: "Feedback"
+            },
+            {
+              url: "/hospital/hospital-contact",
+              title: "Hospital Contact"
+            },
+            {
+              url: "/hospital/career-details",
+              title: "Career Details"
+            }
+          ]} />
+
+          <NavItem title={"Nursing"} icon={<FaUserMd />} items={[
+            {
+              url: "/nursing/nursing-news",
+              title: "Nursing News"
+            },
+            {
+              url: "/nursing/nursing-contact",
+              title: "Nursing Contact"
+            }
+          ]} />
+
+          <NavItem title={"Users"} icon={<FaUserAlt />} items={[
+            {
+              url: "/",
+              title: "Users"
+            },
+            {
+              url: "/",
+              title: "Premission details"
+            }
+          ]} />
+
+          <NavItem link={{
+            icon: <VscGraph />,
+            url: "/",
+            title: "Analytics"
+          }} />
         </div>
-      </div>
+      </div >
     </>
   )
 }

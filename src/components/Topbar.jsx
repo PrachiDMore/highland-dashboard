@@ -4,7 +4,7 @@ import { AiOutlineMenuFold } from 'react-icons/ai'
 const Topbar = () => {
   return (
     <>
-      <div className='w-[85%] h-20 px-8 py-3 border flex justify-between items-center fixed bg-white'>
+      <div className='w-[84%] h-20 px-8 py-3 border flex justify-between items-center fixed bg-white'>
         <div>
           <AiOutlineMenuFold className='text-xl '/>
         </div>

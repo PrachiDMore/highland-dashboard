@@ -9,8 +9,8 @@ const page = () => {
         <div className='grid grid-cols-1 gap-3'>
           <div className='bg-white rounded-md shadow-md'>
             <div className='border-b py-3 px-6 font-medium'>All doctors</div>
-            <div>
-              <div className="m-4 overflow-x-auto">
+            <div className='p-6'>
+              <div className="overflow-x-auto">
                 <table className="w-full text-sm border text-left">
                   <thead className="bg-gray-50 border-b">
                     <tr>

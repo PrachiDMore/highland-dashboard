@@ -1,11 +1,17 @@
+"use client"
 import Button from '@/components/Button'
 import Layout from '@/components/Layout'
-import React from 'react'
+import React, { useState } from 'react'
 import { BsCheckCircle } from 'react-icons/bs'
-import { FiEdit } from 'react-icons/fi'
-import { AiOutlineDelete, AiOutlineEye } from 'react-icons/ai'
+import { FiEdit, FiEye } from 'react-icons/fi'
+import { AiOutlineDelete } from 'react-icons/ai'
+import NewsModal from '@/components/NewsModal'
+import EditNewsModal from '@/components/EditNewsModal'
 
 const page = () => {
+  const [showNews, setShowNews] = useState(false)
+  const [editNews, setEditNews] = useState(false)
+
   return (
     <>
       <Layout>
@@ -15,8 +21,8 @@ const page = () => {
               <div className=' font-medium'>Hospital News</div>
               <Button text={"Add News"} />
             </div>
-            <div>
-              <div className="m-4 overflow-x-auto">
+            <div className='p-6'>
+              <div className="overflow-x-auto">
                 <table className="w-full text-sm border text-left">
                   <thead className="bg-gray-50 border-b">
                     <tr>
@@ -35,18 +41,18 @@ const page = () => {
                       <td className="px-6 py-4"><img className='w-14 h-14 rounded-md' src="/assets/news.png" alt="" /></td>
                       <td className="px-6 py-4">Children's Mental Health Awareness Week	</td>
                       <td className="px-6 py-4">10-Feb-2023</td>
-                      <td className="px-6 py-4"><BsCheckCircle className='text-blue-500 text-lg' /></td>
-                      <td className="px-6 py-4"><Button className={"bg-red-500"} text={"Unpublish"} /></td>
-                      <td className="px-6 py-4 flex items-center gap-6"><AiOutlineEye className='text-xl text-blue-500' />  <FiEdit className='text-lg text-blue-500' /> <AiOutlineDelete className='text-lg text-red-500 font-medium' /> </td>
+                      <td className="px-6 py-4"><BsCheckCircle className='text-accentGreen text-lg' /></td>
+                      <td className="px-6 py-4"><Button className={"bg-customeRed hover:bg-redHover"} text={"Unpublish"} /></td>
+                      <td className="px-6 py-4 h-24 flex items-center gap-6"><FiEye onClick={() => { setShowNews(true) }} className='cursor-pointer text-xl text-accentGreen' />  <FiEdit onClick={() => { setEditNews(true) }} className='cursor-pointer text-lg text-accentGreen' /> <AiOutlineDelete className='cursor-pointer text-lg text-customeRed font-medium' /> </td>
                     </tr>
                     <tr className="bg-white border-b">
                       <td className="px-6 py-4">1</td>
                       <td className="px-6 py-4"><img className='w-14 h-14 rounded-md' src="/assets/news.png" alt="" /></td>
                       <td className="px-6 py-4">Children's Mental Health Awareness Week	</td>
                       <td className="px-6 py-4">10-Feb-2023</td>
-                      <td className="px-6 py-4"><BsCheckCircle className='text-blue-500 text-lg' /></td>
-                      <td className="px-6 py-4"><Button className={"bg-red-500"} text={"Unpublish"} /></td>
-                      <td className="px-6 py-4 flex items-center gap-6"><AiOutlineEye className='text-xl text-blue-500' />  <FiEdit className='text-lg text-blue-500' /> <AiOutlineDelete className='text-lg text-red-500 font-medium' /> </td>
+                      <td className="px-6 py-4"><BsCheckCircle className='text-accentGreen text-lg' /></td>
+                      <td className="px-6 py-4"><Button className={"bg-customeRed hover:bg-redHover"} text={"Unpublish"} /></td>
+                      <td className="px-6 py-4 h-24 flex items-center gap-6"><FiEye className='cursor-pointer text-xl text-accentGreen' />  <FiEdit className='cursor-pointer text-lg text-accentGreen' /> <AiOutlineDelete className='cursor-pointer text-lg text-customeRed font-medium' /> </td>
                     </tr>
                   </tbody>
                 </table>
@@ -56,6 +62,8 @@ const page = () => {
           </div>
         </div>
       </Layout>
+      <NewsModal setShowNews={setShowNews} showNews={showNews} />
+      <EditNewsModal setEditNews={setEditNews} editNews={editNews} />
     </>
   )
 }

@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 0px;
 }
 
-.custom-height{
+.custom-height {
+  height: calc(100vh - 80px - 56px);
+}
+
+.sidebar-height {
   height: calc(100vh - 80px);
+}
+
+.card-shadow {
+  -webkit-box-shadow: 0px 0px 12px -5px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 12px -5px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 12px -5px rgba(0,0,0,0.5);
 }
