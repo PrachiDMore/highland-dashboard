@@ -1,14 +1,15 @@
-"use client"
+"use client";
+
+import { useState } from 'react'
 import Button from '@/components/Button'
 import Layout from '@/components/Layout'
-import React, { useState } from 'react'
 import { BsCheckCircle } from 'react-icons/bs'
 import { FiEdit, FiEye } from 'react-icons/fi'
 import { AiOutlineDelete } from 'react-icons/ai'
 import NewsModal from '@/components/NewsModal'
 import EditNewsModal from '@/components/EditNewsModal'
 
-const page = () => {
+const HospitalNews = () => {
   const [showNews, setShowNews] = useState(false)
   const [editNews, setEditNews] = useState(false)
 
@@ -68,4 +69,4 @@ const page = () => {
   )
 }
 
-export default page
+export default HospitalNews

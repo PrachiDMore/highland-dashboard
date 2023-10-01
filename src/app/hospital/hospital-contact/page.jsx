@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '@/components/Layout'
 import Button from '@/components/Button'
 
-const page = () => {
+const HospitalContact = () => {
   return (
     <>
       <Layout>
@@ -53,4 +53,4 @@ const page = () => {
   )
 }
 
-export default page
+export default HospitalContact

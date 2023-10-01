@@ -3,7 +3,7 @@ import React from 'react'
 import { FiMail } from 'react-icons/fi'
 import { AiOutlineDelete } from 'react-icons/ai'
 
-const page = () => {
+const HospitalFeedback = () => {
   return (
     <>
       <Layout>
@@ -51,4 +51,4 @@ const page = () => {
   )
 }
 
-export default page
+export default HospitalFeedback
