@@ -25,7 +25,7 @@ const NavItem = ({ link, items, title, icon }) => {
             <div className={show ? ' rounded-lg flex flex-col mt-1 ml-7' : 'hidden'}>
               {
                 items.map((item) => {
-                  return <Link href={item?.url} className='text-gray-400 hover:text-white duration-200'>
+                  return <Link key={item?.url} href={item?.url} className='text-gray-400 hover:text-white duration-200'>
                     <p className=' p-2 text-sm'>{item?.title}</p>
                   </Link>
                 })
