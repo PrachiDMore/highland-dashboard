@@ -1,3 +1,5 @@
+"use client"
+
 const { createContext, useContext, useState, useEffect } = require("react");
 
 
