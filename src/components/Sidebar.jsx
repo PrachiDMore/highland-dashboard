@@ -73,7 +73,7 @@ const Sidebar = () => {
             }
           ]} />
 
-          <NavItem title={"Users"} icon={<FaUserAlt />} items={[
+          {/* <NavItem title={"Users"} icon={<FaUserAlt />} items={[
             {
               url: "/",
               title: "Users"
@@ -88,7 +88,7 @@ const Sidebar = () => {
             icon: <VscGraph />,
             url: "/",
             title: "Analytics"
-          }} />
+          }} /> */}
         </div>
       </div >
     </>

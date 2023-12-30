@@ -1,14 +1,14 @@
 import React from 'react'
 
-const Input = ({ textarea, type, text, value }) => {
+const Input = ({ textarea, type, text, value, placeholder }) => {
 
   return (
     <>
       {
         !textarea ?
-          <input className='outline-none rounded-md border border-green-300 focus:border-green-500 px-3 py-2 h-auto w-full' type={type} value={value} />
+          <input className='outline-none rounded-md border border-accentGreen px-3 py-2 h-auto w-full' type={type} value={value} placeholder={placeholder}/>
           :
-          <textarea className='h-48 w-full px-3 py-2 outline-none rounded-md border border-green-300 focus:border-green-500' name="" id="" cols="30" rows="10">{text}</textarea>
+          <textarea className='h-48 w-full px-3 py-2 outline-none rounded-md border border-accentGreen' name="" id="" cols="30" rows="10" placeholder={placeholder}>{text}</textarea>
       }
 
     </>

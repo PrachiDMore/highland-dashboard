@@ -1,11 +1,20 @@
+"use client";
+
 import Button from '@/components/Button'
 import Layout from '@/components/Layout'
-import React from 'react'
+import React, { useState } from 'react'
 import { BsCheckCircle } from 'react-icons/bs'
 import { FiEdit } from 'react-icons/fi'
 import { AiOutlineDelete, AiOutlineEye } from 'react-icons/ai'
+import NewsModal from '@/components/NewsModal';
+import EditNewsModal from '@/components/EditNewsModal';
+import AddNewsModal from '@/components/AddNewsModal';
 
 const page = () => {
+  const [showNews, setShowNews] = useState(false)
+  const [editNews, setEditNews] = useState(false)
+  const [addNews, setAddNews] = useState(false)
+
   return (
     <>
       <Layout>
@@ -13,7 +22,7 @@ const page = () => {
           <div className='bg-white rounded-md shadow-md'>
             <div className='flex justify-between items-center border-b py-3 px-6'>
               <div className=' font-medium'>Nursing News</div>
-              <Button text={"Add News"} />
+              <Button text={"Add News"} onClick={() => { setAddNews(true) }}/>
             </div>
             <div className='p-6'>
               <div className="overflow-x-auto">
@@ -37,7 +46,7 @@ const page = () => {
                       <td className="px-6 py-4">10-Feb-2023</td>
                       <td className="px-6 py-4"><BsCheckCircle className='text-accentGreen text-lg' /></td>
                       <td className="px-6 py-4"><Button className={"bg-customeRed hover:bg-redHover"} text={"Unpublish"} /></td>
-                      <td className="px-6 py-4 flex items-center gap-6"><AiOutlineEye className='text-xl text-accentGreen' />  <FiEdit className='text-lg text-accentGreen' /> <AiOutlineDelete className='text-lg text-customeRed font-medium' /> </td>
+                      <td className="px-6 py-4 h-24 flex items-center gap-6"><AiOutlineEye  onClick={() => { setShowNews(true) }} className='text-xl text-accentGreen' />  <FiEdit onClick={() => { setEditNews(true) }} className='text-lg text-accentGreen' /> <AiOutlineDelete className='text-lg text-customeRed font-medium' /> </td>
                     </tr>
                     <tr className="bg-white border-b">
                       <td className="px-6 py-4">1</td>
@@ -46,7 +55,7 @@ const page = () => {
                       <td className="px-6 py-4">10-Feb-2023</td>
                       <td className="px-6 py-4"><BsCheckCircle className='text-accentGreen text-lg' /></td>
                       <td className="px-6 py-4"><Button className={"bg-customeRed hover:bg-redHover"} text={"Unpublish"} /></td>
-                      <td className="px-6 py-4 flex items-center gap-6"><AiOutlineEye className='text-xl text-accentGreen' />  <FiEdit className='text-lg text-accentGreen' /> <AiOutlineDelete className='text-lg text-customeRed font-medium' /> </td>
+                      <td className="px-6 py-4 h-24 flex items-center gap-6"><AiOutlineEye  onClick={() => { setShowNews(true) }} className='text-xl text-accentGreen' />  <FiEdit onClick={() => { setEditNews(true) }} className='text-lg text-accentGreen' /> <AiOutlineDelete className='text-lg text-customeRed font-medium' /> </td>
                     </tr>
                   </tbody>
                 </table>
@@ -56,6 +65,9 @@ const page = () => {
           </div>
         </div>
       </Layout>
+      <NewsModal setShowNews={setShowNews} showNews={showNews} />
+      <EditNewsModal setEditNews={setEditNews} editNews={editNews} />
+      <AddNewsModal setAddNews={setAddNews} addNews={addNews} />
     </>
   )
 }

@@ -1,9 +1,23 @@
+"use client"
+
 import Button from '@/components/Button'
 import Layout from '@/components/Layout'
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import {FaDownload} from 'react-icons/fa'
 
 const page = () => {
+  const [careers, setCareers] = useState()
+  useEffect(() => {
+    axios("https://highland-hospital-backend.vercel.app/get-career", {
+      method: "GET",
+      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+    })
+    .then((res) => {
+      setCareers(res.data.response)
+    })
+  }, [])
+
   return (
     <>
       <Layout>

@@ -8,10 +8,12 @@ import { FiEdit, FiEye } from 'react-icons/fi'
 import { AiOutlineDelete } from 'react-icons/ai'
 import NewsModal from '@/components/NewsModal'
 import EditNewsModal from '@/components/EditNewsModal'
+import AddNewsModal from '@/components/AddNewsModal';
 
 const HospitalNews = () => {
   const [showNews, setShowNews] = useState(false)
   const [editNews, setEditNews] = useState(false)
+  const [addNews, setAddNews] = useState(false)
 
   return (
     <>
@@ -20,7 +22,7 @@ const HospitalNews = () => {
           <div className='bg-white rounded-md shadow-md'>
             <div className='flex justify-between items-center border-b py-3 px-6'>
               <div className=' font-medium'>Hospital News</div>
-              <Button text={"Add News"} />
+              <Button text={"Add News"} onClick={() => { setAddNews(true) }} />
             </div>
             <div className='p-6'>
               <div className="overflow-x-auto">
@@ -65,6 +67,7 @@ const HospitalNews = () => {
       </Layout>
       <NewsModal setShowNews={setShowNews} showNews={showNews} />
       <EditNewsModal setEditNews={setEditNews} editNews={editNews} />
+      <AddNewsModal setAddNews={setAddNews} addNews={addNews} />
     </>
   )
 }
