@@ -10,6 +10,14 @@
   height: calc(100vh - 80px - 56px);
 }
 
+.custom-height-table-parent {
+  height: calc(100vh - 80px - 56px - 56px);
+  overflow-y: hidden;
+}
+.custom-height-table {
+  height: calc(100vh - 80px - 56px - 56px - 58px) !important;
+}
+
 .sidebar-height {
   height: calc(100vh - 80px);
 }

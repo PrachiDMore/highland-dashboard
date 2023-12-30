@@ -1,49 +1,85 @@
-import React from 'react'
-import Layout from '@/components/Layout'
+"use client";
 
-const page = () => {
+import Button from '@/components/Button';
+import Layout from '@/components/Layout'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import moment from 'moment';
+
+const Confirmed = () => {
+
+  const [appointments, setAppointments] = useState([])
+
+  useEffect(() => {
+    axios('https://highland-hospital-backend.vercel.app/get-appointment', {
+      method: 'GET',
+      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+    })
+      .then((res) => {
+        setAppointments(res.data.response?.filter((e) => {
+          return e?.status === "confirmed";
+        }).sort((data1, data2) => {
+          return moment(data2?.dateofAppointment).format("x") - moment(data1.dateofAppointment).format("x")
+        })
+        )
+      })
+  }, [])
+
+  const handlePostpone = (e) => {
+    axios("https://highland-hospital-backend.vercel.app/update-appointment", {
+      method: "PATCH",
+      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" },
+      data: {
+        "id": e,
+        "updateData": {
+          "status": "confirmed",
+        }
+      }
+    })
+      .then((res) => {
+        if(!res.data.error) window.location.reload()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
     <>
       <Layout>
-        <div className=''>
-          <div className='bg-white rounded-md shadow-md'>
-            <div className='border-b py-3 px-6 font-medium'>Confirm Notification Panel</div>
-            <div className='p-6'>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm border text-left">
-                  <thead className="bg-gray-50 border-b">
-                    <tr>
-                      <th className="px-6 py-3">Token Id</th>
-                      <th className="px-6 py-3">Name</th>
-                      <th className="px-6 py-3">Phone</th>
-                      <th className="px-6 py-3">Doctor</th>
-                      <th className="px-6 py-3">Date</th>
-                      <th className="px-6 py-3">Time</th>
-                      <th className="px-6 py-3">Confirm By</th>
+        <div className='grid grid-cols-1 gap-3 custom-height-table-parent'>
+          <div className=' rounded-md shadow-md'>
+            <h2 className='border-b py-3 px-6 font-medium'>Confirm Notification Panel</h2>
+            <div className="mx-6 mb-6 overflow-x-auto custom-height-table mt-2">
+              <table className="w-full text-sm border text-left relative overflow-scroll">
+                <thead className="bg-gray-50 border-b sticky top-0">
+                  <tr>
+                    <th className="px-6 py-3">Token Id</th>
+                    <th className="px-6 py-3">Name</th>
+                    <th className="px-6 py-3">Doctor</th>
+                    <th className="px-6 py-3">Appointment Date</th>
+                    <th className="px-6 py-3">Time Slot</th>
+                    <th className="px-6 py-3">Phone</th>
+                    <th className="px-6 py-3">Postpone</th>
+                    {/* <th className="px-6 py-3">Action 3 (Accept)</th> */}
+                  </tr>
+                </thead>
+                <tbody className='text-gray-800 text-sm'>
+                  {appointments?.map((value, index) => {
+                    return <tr key={index} className="bg-white border-b">
+                      <td className="px-6 py-4">#{value?._id?.slice(18)}</td>
+                      <td className="px-6 py-4">{value.firstname}</td>
+                      <td className="px-6 py-4">{value.doctor}</td>
+                      <td className="px-6 py-4">{moment(value.dateofAppointment).format("DD-MMM-YYYY")}</td>
+                      <td className="px-6 py-4">{moment(value.timeofAppointment).format("hh:mm a")}</td>
+                      <td className="px-6 py-4">{value.phoneNumber}</td>
+                      <td className="px-6 py-4"><Button onClick={handlePostpone} text={"Postpone"} /></td>
+                      {/* <td className="px-6 py-4">action 3</td> */}
                     </tr>
-                  </thead>
-                  <tbody className='text-gray-800 text-sm'>
-                    <tr className="bg-white border-b">
-                      <td className="px-6 py-4">ORT215</td>
-                      <td className="px-6 py-4">Connectia Solutions Private Limited</td>
-                      <td className="px-6 py-4">9741765117</td>
-                      <td className="px-6 py-4">Ahmed Rizwan C.M</td>
-                      <td className="px-6 py-4">16-Feb-2023</td>
-                      <td className="px-6 py-4">3.00PM -3.15PM</td>
-                      <td className="px-6 py-4">Confirmed by superadmin</td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-6 py-4">ORT215</td>
-                      <td className="px-6 py-4">Connectia Solutions Private Limited</td>
-                      <td className="px-6 py-4">9741765117</td>
-                      <td className="px-6 py-4">Ahmed Rizwan C.M</td>
-                      <td className="px-6 py-4">16-Feb-2023</td>
-                      <td className="px-6 py-4">3.00PM -3.15PM</td>
-                      <td className="px-6 py-4">Confirmed by superadmin</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                  })
+                  }
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -52,4 +88,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Confirmed

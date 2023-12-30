@@ -9,7 +9,7 @@ const Topbar = () => {
           <AiOutlineMenuFold className='text-xl '/>
         </div>
         <div>
-          <img className='rounded-full w-11 h-11' src="/assets/user.jpeg" alt="" />
+          {/* <img className='rounded-full w-11 h-11' src="/assets/user.jpeg" alt="" /> */}
         </div>
       </div>
     </>
