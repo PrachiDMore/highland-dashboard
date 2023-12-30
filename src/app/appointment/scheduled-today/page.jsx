@@ -49,7 +49,7 @@ const ScheduleToday = () => {
                   </thead>
                   <tbody className='text-gray-800 text-sm'>
                     {appointments?.map((value, index) => {
-                      return <tr className="bg-white border-b">
+                      return <tr key={index} className="bg-white border-b">
                         <td className="px-6 py-4">1</td>
                         <td className="px-6 py-4">{value.firstname}</td>
                         <td className="px-6 py-4">{value.doctor}</td>
