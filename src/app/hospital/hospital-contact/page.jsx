@@ -39,7 +39,7 @@ const HospitalContact = () => {
                   </thead>
                   <tbody className='text-gray-800 text-sm'>
                     {contacts?.map((value, index) => {
-                      return <tr className="bg-white border-b ">
+                      return <tr key={index} className="bg-white border-b ">
                       <td className="px-6 py-4"><b>{value.firstName} {value.lastName}</b><br /> {value.email} <br /> {value.phonenumber}</td>
                       <td className="px-6 py-4">{value.subject}</td>
                       <td className="px-6 py-4">{value.message}</td>

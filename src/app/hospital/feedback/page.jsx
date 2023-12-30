@@ -39,7 +39,7 @@ const HospitalFeedback = () => {
                   </thead>
                   <tbody className='text-gray-800 text-sm'>
                     {feedback?.map((value, index) => {
-                      return  <tr className="bg-white border-b ">
+                      return  <tr key={index} className="bg-white border-b ">
                       <td className="px-6 py-4">1</td>
                       <td className="px-6 py-4"><b>{value?.fullname}</b><br /> {value?.email} <br /> {value?.phonenumber}</td>
                       <td className="px-6 py-4">{value.address}</td>

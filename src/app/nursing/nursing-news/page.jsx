@@ -10,7 +10,7 @@ import NewsModal from '@/components/NewsModal';
 import EditNewsModal from '@/components/EditNewsModal';
 import AddNewsModal from '@/components/AddNewsModal';
 
-const page = () => {
+const NursingNews = () => {
   const [showNews, setShowNews] = useState(false)
   const [editNews, setEditNews] = useState(false)
   const [addNews, setAddNews] = useState(false)
@@ -72,4 +72,4 @@ const page = () => {
   )
 }
 
-export default page
+export default NursingNews

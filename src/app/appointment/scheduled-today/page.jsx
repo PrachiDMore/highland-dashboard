@@ -5,7 +5,7 @@ import Layout from '@/components/Layout'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const page = () => {
+const ScheduleToday = () => {
 
   const [appointments, setAppointments] = useState([])
   useEffect(() => {
@@ -88,4 +88,4 @@ const page = () => {
   )
 }
 
-export default page
+export default ScheduleToday

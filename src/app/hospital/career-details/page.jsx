@@ -6,7 +6,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import {FaDownload} from 'react-icons/fa'
 
-const page = () => {
+const CareerDetails = () => {
   const [careers, setCareers] = useState()
   useEffect(() => {
     axios("https://highland-hospital-backend.vercel.app/get-career", {
@@ -68,4 +68,4 @@ const page = () => {
   )
 }
 
-export default page
+export default CareerDetails 

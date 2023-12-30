@@ -5,7 +5,7 @@ import Layout from '@/components/Layout'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-const page = () => {
+const NursingContact = () => {
   const [contact, setContact] = useState()
   useEffect((e) => {
     axios("https://highland-hospital-backend.vercel.app/get-nursing-contact", {
@@ -38,7 +38,7 @@ const page = () => {
                   </thead>
                   <tbody className='text-gray-800 text-sm'>
                     {contact?.map((value, index) => {
-                      return <tr className="bg-white border-b ">
+                      return <tr key={index} className="bg-white border-b ">
                       <td className="px-6 py-4"><b>{value?.fullname}</b><br /> {value?.email} </td>
                       <td className="px-6 py-4">{value?.message}</td>
                       <td className="px-6 py-4">16-Sep-2023</td>
@@ -67,4 +67,4 @@ const page = () => {
   )
 }
 
-export default page
+export default NursingContact 
