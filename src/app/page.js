@@ -36,13 +36,19 @@ export default function Home() {
           <h1 className='text-xl font-semibold'>Appointment Overview</h1>
           <div className='grid grid-cols-4 gap-5 mt-2'>
             <Card link={'/appointment/uncheck'} heading={"New"} number={appointments?.filter((e) => {
-              return e?.status === "new";
-            }).length} icon={<IoMdNotificationsOutline className='text-2xl ' />} />
+              return e?.status === "new"; }).length} icon={<IoMdNotificationsOutline className='text-2xl ' />} />
+
             <Card link={'/appointment/scheduled-today'} heading={"Schedule Today"} number={appointments.filter((e) => {
-              return e?.status === "confirmed" && moment(Date.now()).format("DD-MMM-YYYY") === moment(e?.dateofAppointment).format("DD-MMM-YYYY");
-            }).length} icon={<FaRegCalendarCheck className='text-2xl ' />} />
-            <Card link={'/appointment/confirmed'} heading={"Confirmed"} number={"25"} icon={<BsCheckLg className='text-2xl ' />} />
-            <Card link={'/appointment/postponed'} heading={"Postponed"} number={"0"} icon={<FaRegClock className='text-2xl text-customeRed' />} className={"bg-red-50"} />
+              return e?.status === "confirmed" && moment(Date.now()).format("DD-MMM-YYYY") === moment(e?.dateofAppointment).format("DD-MMM-YYYY"); }).length} icon={<FaRegCalendarCheck className='text-2xl ' />} />
+
+            <Card link={'/appointment/confirmed'} heading={"Confirmed"} number={appointments.filter((e) => {
+              return e?.status === "confirmed";
+            }).sort((data1, data2) => {
+              return moment(data2?.dateofAppointment).format("x") - moment(data1.dateofAppointment).format("x")
+            }).length} icon={<BsCheckLg className='text-2xl ' />} />
+
+            {/* <Card link={'/appointment/postponed'} heading={"Postponed"} number={"0"} icon={<FaRegClock className='text-2xl text-customeRed' />} className={"bg-red-50"} /> */}
+
             <Card link={'/appointment/doctors'} heading={"Doctors"} number={"4"} icon={<FaUserMd className='text-2xl ' />} />
           </div>
         </div>

@@ -47,7 +47,7 @@ const Confirmed = () => {
   return (
     <>
       <Layout>
-        <div className='grid grid-cols-1 gap-3 custom-height-table-parent'>
+        <div className='grid grid-cols-1 gap-3 custom-height-table-parent shadow-md rounded-md border'>
           <div className=' rounded-md shadow-md'>
             <h2 className='border-b py-3 px-6 font-medium'>Confirm Notification Panel</h2>
             <div className="mx-6 mb-6 overflow-x-auto custom-height-table mt-2">
