@@ -17,6 +17,11 @@ export default function Home() {
 
   const [appointments, setAppointments] = useState([])
   const [doctors, setDoctors] = useState([])
+  const [news, setNews] = useState([])
+  const [feedbacks, setFeedbacks] = useState([])
+  const [contacts, setContacts] = useState([])
+  const [nursingContacts, setNursingContacts] = useState([])
+  const [career, setCareer] = useState([])
 
   useEffect(() => {
     axios('https://highland-hospital-backend.vercel.app/get-appointment', {
@@ -32,6 +37,41 @@ export default function Home() {
     })
       .then((res) => {
         setDoctors(res.data.response);
+      })
+    axios('https://highland-hospital-backend.vercel.app/get-news', {
+      method: 'GET',
+      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+    })
+      .then((res) => {
+        setNews(res.data.response);
+      })
+    axios('https://highland-hospital-backend.vercel.app/get-feedback', {
+      method: 'GET',
+      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+    })
+      .then((res) => {
+        setFeedbacks(res.data.response);
+      })
+    axios('https://highland-hospital-backend.vercel.app/get-contact', {
+      method: 'GET',
+      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+    })
+      .then((res) => {
+        setContacts(res.data.response);
+      })
+    axios('https://highland-hospital-backend.vercel.app/get-career', {
+      method: 'GET',
+      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+    })
+      .then((res) => {
+        setCareer(res.data.response);
+      })
+    axios('https://highland-hospital-backend.vercel.app/get-nursing-contact', {
+      method: 'GET',
+      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+    })
+      .then((res) => {
+        setNursingContacts(res.data.response);
       })
   }, [])
 
@@ -64,18 +104,18 @@ export default function Home() {
         <div className='my-8'>
           <h1 className='text-xl font-semibold'>Hospital Overview</h1>
           <div className='grid grid-cols-4 gap-5 mt-2'>
-            <Card link={'/hospital/hospital-news'} heading={"Hospital News"} number={"7"} icon={<LuNewspaper className='text-2xl ' />} />
-            <Card link={'/hospital/feedback'} heading={"Feedbacks"} number={"14"} icon={<AiOutlineMessage className='text-2xl ' />} />
-            <Card link={'/hospital/hospital-contact'} heading={"Hospital Contacts"} number={"219"} icon={<IoCallSharp className='text-2xl ' />} />
-            <Card link={'/hospital/career-details'} heading={"Career applications"} number={"85"} icon={<AiOutlineFilePdf className='text-2xl ' />} />
+            <Card link={'/hospital/hospital-news'} heading={"Hospital News"} number={news?.length} icon={<LuNewspaper className='text-2xl ' />} />
+            <Card link={'/hospital/feedback'} heading={"Feedbacks"} number={feedbacks?.length} icon={<AiOutlineMessage className='text-2xl ' />} />
+            <Card link={'/hospital/hospital-contact'} heading={"Hospital Contacts"} number={contacts?.length} icon={<IoCallSharp className='text-2xl ' />} />
+            <Card link={'/hospital/career-details'} heading={"Career applications"} number={career?.length} icon={<AiOutlineFilePdf className='text-2xl ' />} />
           </div>
         </div>
 
         <div className='my-8'>
           <h1 className='text-xl font-semibold'>Nursing Overview</h1>
           <div className='grid grid-cols-4 gap-5 mt-2'>
-            <Card link={'/nursing/nursing-news'} heading={"Nursing News"} number={"0"} icon={<LuNewspaper className='text-2xl ' />} />
-            <Card link={'/nursing/nursing-contact"'} heading={"Nursing Contacts"} number={"88"} icon={<IoCallSharp className='text-2xl ' />} />
+            <Card link={'/nursing/nursing-news'} heading={"Nursing News"} number={news?.length} icon={<LuNewspaper className='text-2xl ' />} />
+            <Card link={'/nursing/nursing-contact"'} heading={"Nursing Contacts"} number={nursingContacts?.length} icon={<IoCallSharp className='text-2xl ' />} />
           </div>
         </div>
       </Layout>

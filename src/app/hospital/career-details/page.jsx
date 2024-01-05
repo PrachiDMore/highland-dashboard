@@ -39,15 +39,17 @@ const CareerDetails = () => {
                     </tr>
                   </thead>
                   <tbody className='text-gray-800 text-sm'>
-                    <tr className="bg-white border-b ">
-                      <td className="px-6 py-4"><b>Vishnu rajesh</b><br /> vishnurajesh5219@gmail.com </td>
-                      <td className="px-6 py-4">Administration / Operations</td>
-                      <td className="px-6 py-4"><FaDownload className='text-lg'/></td>
-                      <td className="px-6 py-4">24-Sep-2023</td>
-                      <td className="px-6 py-4">Pending Response</td>
-                      <td className="px-6 py-4"><Button text={"Respond"}/></td>
-                      <td className="px-6 py-4"><Button className={"bg-customeRed hover:bg-redHover"} text={"Delete"}/></td>
-                    </tr>
+                   {careers?.map((value, index) => {
+                    return <tr key={index} className="bg-white border-b ">
+                    <td className="px-6 py-4"><b>Vishnu rajesh</b><br /> vishnurajesh5219@gmail.com </td>
+                    <td className="px-6 py-4">Administration / Operations</td>
+                    <td className="px-6 py-4"><FaDownload className='text-lg'/></td>
+                    <td className="px-6 py-4">24-Sep-2023</td>
+                    <td className="px-6 py-4">Pending Response</td>
+                    <td className="px-6 py-4"><Button text={"Respond"}/></td>
+                    <td className="px-6 py-4"><Button className={"bg-customeRed hover:bg-redHover"} text={"Delete"}/></td>
+                  </tr>
+                   }) }
                     <tr className="bg-white">
                       <td className="px-6 py-4"><b>Vishnu rajesh</b><br /> vishnurajesh5219@gmail.com </td>
                       <td className="px-6 py-4">Administration / Operations</td>

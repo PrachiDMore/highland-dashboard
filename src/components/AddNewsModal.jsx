@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import Input from './Input'
 import Button from './Button'
 import axios from 'axios'
+import Spinner from './Spinner'
 
 const AddNewsModal = ({ addNews, setAddNews }) => {
-
+  const [loading, setLoading] = useState(false)
   const initialState = {
     title:"",
     description:"",
-    image:""
+    image:"https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto/v1662679291/phone-image.png",
+    timestamp: ""
   }
   const [formState, setFormState] = useState(initialState)
 
@@ -22,25 +24,30 @@ const AddNewsModal = ({ addNews, setAddNews }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setLoading(true)
     axios("https://highland-hospital-backend.vercel.app/post-news", {
       method: "POST",
       headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" },
       data: {
         title: formState.title,
         description: formState.description,
-        image: formState.image
+        image: "https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto/v1662679291/phone-image.png",
+        timestamp: formState.timestamp
       }
     })
     .then((res) => {
       if(!res.data.error){
         setFormState(initialState)
         alert("News Added!")
+        window.location.reload();
       } else {
         console.log(res.data.message)
         alert("Something went wrong!")
       }
+      setLoading(false)
     })
     .catch((err) => {
+      setLoading(false)
       console.log(err)
     })
   }
@@ -66,13 +73,13 @@ const AddNewsModal = ({ addNews, setAddNews }) => {
 
             <div className="p-6 flex flex-col justify-center gap-3">
               <img className='m-auto h-28 w-28 shadow-lg border rounded-lg' src="https://static.vecteezy.com/system/resources/previews/008/015/799/non_2x/illustration-of-no-image-available-icon-template-for-no-image-or-picture-coming-soon-free-vector.jpg" alt="" />
-              <Input onChange={handleChange} value={formState.image} id={"image"} textarea={false} type={"file"} className={""} />
+              <Input onChange={handleChange} id={"image"} textarea={false} type={"file"} className={""} />
               <Input onChange={handleChange} value={formState.title} id={"title"} textarea={false} type={"text"} placeholder={"Enter title"} />
               <Input onChange={handleChange} value={formState.description} id={"description"} textarea={true} placeholder={"Enter description"} />
             </div>
 
             <div className="flex items-center justify-center p-6 pt-3 border-t border-gray-200 rounded-b ">
-              <Button type={"submit"} text={"Publish News"} />
+              <Button disabled={loading} type={"submit"} text={loading ? <Spinner type='button'/>  : "Publish News"} className={"flex justify-center items-center w-56 py-3"} />
             </div>
           </form>
         </div>

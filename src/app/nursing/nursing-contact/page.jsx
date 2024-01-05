@@ -2,17 +2,22 @@
 
 import Button from '@/components/Button'
 import Layout from '@/components/Layout'
+import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const NursingContact = () => {
   const [contact, setContact] = useState()
+  const [loading, setLoading] = useState(false)
+
   useEffect((e) => {
+    setLoading(true)
     axios("https://highland-hospital-backend.vercel.app/get-nursing-contact", {
       method: "GET",
       headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
     })
       .then((res) => {
+        setLoading(false)
         setContact(res.data.response)
       })
   }, [])
@@ -20,13 +25,18 @@ const NursingContact = () => {
   return (
     <>
       <Layout>
-        <div className=''>
-          <div className='bg-white rounded-md shadow-md'>
-            <div className='border-b py-3 px-6 font-medium'>Nursing contact</div>
-            <div className='p-6'>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm border text-left">
-                  <thead className="bg-gray-50 border-b">
+        <div className='grid grid-cols-1 gap-3 custom-height-table-parent shadow-md rounded-md border'>
+            <h2 className='border-b py-3 px-6 font-medium'>Nursing contact</h2>
+            <div className='px-6'>
+              <div className="overflow-x-auto custom-height-table">
+                {
+                  loading?
+                  <div class="w-full h-full flex items-center justify-center ">
+                      <Spinner />
+                    </div>
+                  :
+                  <table className="w-full text-sm border-r border-l border-b text-left relative overflow-scroll">
+                  <thead className="bg-gray-50 border sticky top-0">
                     <tr>
                       <th className="px-6 py-3">Personal Details</th>
                       <th className="px-6 py-3">Message</th>
@@ -57,11 +67,10 @@ const NursingContact = () => {
                       <td className="px-6 py-4"><Button text={"Respond"} /></td>
                     </tr> */}
                   </tbody>
-                </table>
+                </table>}
               </div>
             </div>
           </div>
-        </div>
       </Layout>
     </>
   )
