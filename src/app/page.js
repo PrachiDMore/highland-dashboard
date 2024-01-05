@@ -16,6 +16,7 @@ import moment from 'moment';
 export default function Home() {
 
   const [appointments, setAppointments] = useState([])
+  const [doctors, setDoctors] = useState([])
 
   useEffect(() => {
     axios('https://highland-hospital-backend.vercel.app/get-appointment', {
@@ -24,6 +25,13 @@ export default function Home() {
     })
       .then((res) => {
         setAppointments(res.data.response);
+      })
+    axios('https://highland-hospital-backend.vercel.app/get-doctor', {
+      method: 'GET',
+      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+    })
+      .then((res) => {
+        setDoctors(res.data.response);
       })
   }, [])
 
@@ -49,7 +57,7 @@ export default function Home() {
 
             {/* <Card link={'/appointment/postponed'} heading={"Postponed"} number={"0"} icon={<FaRegClock className='text-2xl text-customeRed' />} className={"bg-red-50"} /> */}
 
-            <Card link={'/appointment/doctors'} heading={"Doctors"} number={"4"} icon={<FaUserMd className='text-2xl ' />} />
+            <Card link={'/appointment/doctors'} heading={"Doctors"} number={doctors?.length} icon={<FaUserMd className='text-2xl ' />} />
           </div>
         </div>
 

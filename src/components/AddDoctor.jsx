@@ -4,18 +4,17 @@ import React, { useState } from 'react'
 import Input from './Input'
 import Button from './Button'
 import axios from 'axios'
+import Spinner from './Spinner'
 
 const AddDoctor = ({ addDoctor, setAddDoctor }) => {
+  const [loading, setLoading] = useState(false)
 
   const initialState = {
     name: "",
     email: "",
-    image: "",
+    image: "https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto/v1662679291/phone-image.png",
     designation: "",
     status: "",
-    createdAt: "",
-    updatedAt: "",
-    id: ""
   }
   const [formState, setFormState] = useState(initialState)
 
@@ -29,30 +28,31 @@ const AddDoctor = ({ addDoctor, setAddDoctor }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setLoading(true)
     axios("https://highland-hospital-backend.vercel.app/post-doctor", {
       method: "POST",
       headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" },
       data: {
         name: formState.name,
         email: formState.email,
-        image: formState.image,
+        image: "https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto/v1662679291/phone-image.png",
         designation: formState.designation,
-        status: formState.status,
-        createdAt: formState.createdAt,
-        updatedAt: formState.updatedAt,
-        id: "6596c14efa8a8afa97e631f6"
+        status: "present",
       }
     })
       .then((res) => {
         if (!res.data.error) {
           setFormState(initialState)
-          alert("News Added!")
+          alert("Created Doctor Profile!")
+          window.location.reload();
         } else {
           console.log(res.data.message)
           alert("Something went wrong!")
         }
+        setLoading(false)
       })
       .catch((err) => {
+        setLoading(false)
         console.log(err)
       })
   }
@@ -78,7 +78,7 @@ const AddDoctor = ({ addDoctor, setAddDoctor }) => {
 
             <div className="p-6 flex flex-col justify-center gap-3">
               <img className='m-auto h-28 w-28 shadow-lg border rounded-lg' src="https://static.vecteezy.com/system/resources/previews/008/015/799/non_2x/illustration-of-no-image-available-icon-template-for-no-image-or-picture-coming-soon-free-vector.jpg" alt="" />
-              <Input onChange={handleChange} value={formState.image} id={"image"} textarea={false} type={"file"} className={""} />
+              <Input onChange={handleChange} id={"image"} textarea={false} type={"file"} className={""} />
               <Input onChange={handleChange} value={formState.name} id={"name"} textarea={false} type={"text"} placeholder={"Enter name"} />
               <Input onChange={handleChange} value={formState.email} id={"email"} textarea={false} type={"text"} placeholder={"Enter email"} />
               <Input onChange={handleChange} value={formState.designation} id={"designation"} textarea={false} type={"text"} placeholder={"Enter designation"} />
@@ -86,7 +86,7 @@ const AddDoctor = ({ addDoctor, setAddDoctor }) => {
             </div>
 
             <div className="flex items-center justify-center p-6 pt-3 border-t border-gray-200 rounded-b ">
-              <Button type={"submit"} text={"Add"} />
+              <Button disabled={loading} type={"submit"} text={loading ? <Spinner type='button'/>  : "Submit"} className={"flex justify-center items-center w-56 py-3"} />
             </div>
           </form>
         </div>
