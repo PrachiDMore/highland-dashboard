@@ -4,6 +4,7 @@ import Button from '@/components/Button'
 import Layout from '@/components/Layout'
 import Spinner from '@/components/Spinner'
 import axios from 'axios'
+import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 
 const NursingContact = () => {
@@ -51,7 +52,7 @@ const NursingContact = () => {
                       return <tr key={index} className="bg-white border-b ">
                       <td className="px-6 py-4"><b>{value?.fullname}</b><br /> {value?.email} </td>
                       <td className="px-6 py-4">{value?.message}</td>
-                      <td className="px-6 py-4">16-Sep-2023</td>
+                      <td className="px-6 py-4">{moment(value?.timestamp).format("DD-MMM-YYYY")}</td>
                       {/* <td className="px-6 py-4">16-Sep-2023</td> */}
                       <td className="px-6 py-4">Pending Response</td>
                       <td className="px-6 py-4"><Button text={"Respond"} /></td>

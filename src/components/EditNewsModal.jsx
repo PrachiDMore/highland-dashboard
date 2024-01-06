@@ -5,7 +5,7 @@ import Input from './Input'
 const EditNewsModal = ({ setEditNews, editNews }) => {
   return (
     <>
-      <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" className={editNews ? "fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex justify-center items-center max-h-full opacity-100 bg-black/50" : "fixed flex justify-center items-center top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen max-h-full opacity-0 bg-black/50 pointer-events-none"}>
+      <div id="staticModal" className={editNews ? "fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex justify-center items-center max-h-full opacity-100 bg-black/50" : "fixed flex justify-center items-center top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen max-h-full opacity-0 bg-black/50 pointer-events-none"}>
         <div className="relative w-full max-w-3xl max-h-full">
 
           <div className="relative bg-white rounded-lg shadow ">

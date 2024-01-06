@@ -81,7 +81,7 @@ const Confirmed = () => {
                         return <tr key={index} className="bg-white border-b">
                           <td className="px-6 py-4">#{value?._id?.slice(18)}</td>
                           <td className="px-6 py-4">{value.firstname}</td>
-                          <td className="px-6 py-4">{value.doctor}</td>
+                          <td className="px-6 py-4">{value.doctor?.name}</td>
                           <td className="px-6 py-4">{moment(value.dateofAppointment).format("DD-MMM-YYYY")}</td>
                           <td className="px-6 py-4">{moment(value.timeofAppointment).format("hh:mm a")}</td>
                           <td className="px-6 py-4">{value.phoneNumber}</td>
