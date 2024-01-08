@@ -2,9 +2,36 @@
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 
 const LoginPage = () => {
+  const initialState = {
+    "username": "",
+    "password": ""
+  }
+  const [formState, setFormState] = useState(initialState);
+
+  const handleChange = (e) => {
+    setFormState({
+      ...formState,
+      [e.target.id]: e.target.value
+    })
+  }
+  const handleSignIn = () => {
+    try {
+      axios("https://highland-hospital-backend.vercel.app/sign-in", {
+        method: "POST",
+        data: formState,
+      })
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          window.location.href = "/"
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       <div className='w-screen h-screen flex justify-center items-center bg-light'>
@@ -16,15 +43,15 @@ const LoginPage = () => {
           <div className='flex flex-col gap-3'>
             <div className='flex flex-col gap-1 '>
               <label className='text-semibold' htmlFor="">Username</label>
-              <Input type={"text"} placeholder={"Enter username"} />
+              <Input onChange={handleChange} value={formState.username} id={"username"} type={"text"} placeholder={"Enter username"} />
             </div>
             <div lassName='flex flex-col gap-1 '>
               <label className='text-semibold' htmlFor="">Password</label>
-              <Input type={"password"} placeholder={"Enter password"} />
+              <Input onChange={handleChange} value={formState.password} id={"password"} type={"password"} placeholder={"Enter password"} />
               <p className='text-sm text-customGray mt-2 text-right'>Forgot Password?</p>
             </div>
             <div>
-              <Button className={'w-full mt-5 font-semibold text-lg'} text={'Login'}/>
+              <Button onClick={handleSignIn} className={'w-full mt-5 font-semibold text-lg'} text={'Login'} />
             </div>
           </div>
         </div>

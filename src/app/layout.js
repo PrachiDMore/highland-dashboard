@@ -1,17 +1,28 @@
+"use client";
+
 import { AuthContextProvider } from '@/context/Auth'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import LoadingBar from 'react-top-loading-bar'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
+const metadata = {
   title: 'Highland Hospital',
   description: 'Highland Hospital Dashboard',
 }
 
 export default function RootLayout({ children }) {
-
+  const router = useRouter()
+  useEffect(() => {
+    if (localStorage.getItem("token") === null || localStorage.getItem("token") === "") {
+      router.push("/login")
+    } else {
+      return;
+    }
+  }, [])
   return (
     <html lang="en">
       <body className={inter.className}>

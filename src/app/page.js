@@ -26,49 +26,49 @@ export default function Home() {
   useEffect(() => {
     axios('https://highland-hospital-backend.vercel.app/get-appointment', {
       method: 'GET',
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     })
       .then((res) => {
         setAppointments(res.data.response);
       })
     axios('https://highland-hospital-backend.vercel.app/get-doctor', {
       method: 'GET',
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     })
       .then((res) => {
         setDoctors(res.data.response);
       })
     axios('https://highland-hospital-backend.vercel.app/get-news', {
       method: 'GET',
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     })
       .then((res) => {
         setNews(res.data.response);
       })
     axios('https://highland-hospital-backend.vercel.app/get-feedback', {
       method: 'GET',
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     })
       .then((res) => {
         setFeedbacks(res.data.response);
       })
     axios('https://highland-hospital-backend.vercel.app/get-contact', {
       method: 'GET',
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     })
       .then((res) => {
         setContacts(res.data.response);
       })
     axios('https://highland-hospital-backend.vercel.app/get-career', {
       method: 'GET',
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     })
       .then((res) => {
         setCareer(res.data.response);
       })
     axios('https://highland-hospital-backend.vercel.app/get-nursing-contact', {
       method: 'GET',
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     })
       .then((res) => {
         setNursingContacts(res.data.response);

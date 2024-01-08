@@ -15,7 +15,7 @@ const Confirmed = () => {
     setLoading(true)
     axios('https://highland-hospital-backend.vercel.app/get-appointment', {
       method: 'GET',
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" }
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     })
       .then((res) => {
         setLoading(false)
@@ -31,7 +31,7 @@ const Confirmed = () => {
   const handlePostpone = (e) => {
     axios("https://highland-hospital-backend.vercel.app/update-appointment", {
       method: "PATCH",
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" },
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
       data: {
         "id": e,
         "updateData": {

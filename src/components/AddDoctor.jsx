@@ -31,7 +31,7 @@ const AddDoctor = ({ addDoctor, setAddDoctor }) => {
     setLoading(true)
     axios("https://highland-hospital-backend.vercel.app/post-doctor", {
       method: "POST",
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkWk9DZnVJYkQ4ZHhnMFI3MjVsMzlUT0tNYVJwY3dRMzNQZW5UQkdQYWdnY3M1bDFtL1ZZcWEiLCJpYXQiOjE3MDI1NTM2NDd9.e88TIYPxwjcLVAe0Q4dy0Ep0UEigbFJQy6bODbQ0Cbw" },
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
       data: {
         name: formState.name,
         email: formState.email,
