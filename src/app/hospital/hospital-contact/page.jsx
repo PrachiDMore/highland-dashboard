@@ -19,7 +19,9 @@ const HospitalContact = () => {
     })
       .then((res) => {
         setLoading(false)
-        setContacts(res.data.response)
+        setContacts(res.data.response.sort((data1, data2) => {
+          return data2.timeStamp - data1.timeStamp
+        }))
       })
   }, [])
 

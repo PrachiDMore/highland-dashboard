@@ -5,9 +5,11 @@ import Input from './Input'
 import Button from './Button'
 import axios from 'axios'
 import Spinner from './Spinner'
+import UploadComponent from './UploadComponent'
 
 const AddDoctor = ({ addDoctor, setAddDoctor }) => {
   const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState("")
 
   const initialState = {
     name: "",
@@ -35,7 +37,7 @@ const AddDoctor = ({ addDoctor, setAddDoctor }) => {
       data: {
         name: formState.name,
         email: formState.email,
-        image: "https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto/v1662679291/phone-image.png",
+        image: image ? image : "",
         designation: formState.designation,
         status: "present",
       }
@@ -77,8 +79,7 @@ const AddDoctor = ({ addDoctor, setAddDoctor }) => {
             </div>
 
             <div className="p-6 flex flex-col justify-center gap-3">
-              <img className='m-auto h-28 w-28 shadow-lg border rounded-lg' src="https://static.vecteezy.com/system/resources/previews/008/015/799/non_2x/illustration-of-no-image-available-icon-template-for-no-image-or-picture-coming-soon-free-vector.jpg" alt="" />
-              <Input onChange={handleChange} id={"image"} textarea={false} type={"file"} className={""} />
+              <UploadComponent setImage={setImage} image={image}/>
               <Input onChange={handleChange} value={formState.name} id={"name"} textarea={false} type={"text"} placeholder={"Enter name"} />
               <Input onChange={handleChange} value={formState.email} id={"email"} textarea={false} type={"text"} placeholder={"Enter email"} />
               <Input onChange={handleChange} value={formState.designation} id={"designation"} textarea={false} type={"text"} placeholder={"Enter designation"} />

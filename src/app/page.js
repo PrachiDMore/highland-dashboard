@@ -95,6 +95,12 @@ export default function Home() {
               return moment(data2?.dateofAppointment).format("x") - moment(data1.dateofAppointment).format("x")
             }).length} icon={<BsCheckLg className='text-2xl ' />} />
 
+            <Card link={'/appointment/completed'} heading={"Completed"} number={appointments.filter((e) => {
+              return e?.status === "completed";
+            }).sort((data1, data2) => {
+              return moment(data2?.dateofAppointment).format("x") - moment(data1.dateofAppointment).format("x")
+            }).length} icon={<BsCheckLg className='text-2xl ' />} />
+
             {/* <Card link={'/appointment/postponed'} heading={"Postponed"} number={"0"} icon={<FaRegClock className='text-2xl text-customeRed' />} className={"bg-red-50"} /> */}
 
             <Card link={'/appointment/doctors'} heading={"Doctors"} number={doctors?.length} icon={<FaUserMd className='text-2xl ' />} />

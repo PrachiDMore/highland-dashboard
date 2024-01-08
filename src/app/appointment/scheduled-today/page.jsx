@@ -28,14 +28,14 @@ const ScheduleToday = () => {
       })
   }, [])
 
-  const handlePostpone = (e) => {
+  const handleComplete = (e) => {
     axios("https://highland-hospital-backend.vercel.app/update-appointment", {
       method: "PATCH",
       headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
       data: {
         "id": e,
         "updateData": {
-          "status": "confirmed",
+          "status": "completed",
         }
       }
     })
@@ -73,6 +73,7 @@ const ScheduleToday = () => {
                       <th className="px-6 py-3">Time Slot</th>
                       <th className="px-6 py-3">Phone</th>
                       <th className="px-6 py-3">Postpone</th>
+                      <th className="px-6 py-3">Complete</th>
                     </tr>
                   </thead>
                   <tbody className='text-gray-800 text-sm'>
@@ -85,6 +86,7 @@ const ScheduleToday = () => {
                         <td className="px-6 py-4">{moment(value.timeofAppointment).format("hh:mm a")}</td>
                         <td className="px-6 py-4">{value.phoneNumber}</td>
                         <td className="px-6 py-4"><Button text={"Postpone"} /></td>
+                        <td className="px-6 py-4"><Button onClick={handleComplete} text={"Complete"} /></td>
                       </tr>
                     })
                     }

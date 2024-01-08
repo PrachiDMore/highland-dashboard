@@ -26,6 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+      <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript" async></script>  
         {/* <LoadingBar color='#f11946' ref={ref} /> */}
         <AuthContextProvider>
           {children}

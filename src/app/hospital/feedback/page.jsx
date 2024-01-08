@@ -6,6 +6,7 @@ import { FiMail } from 'react-icons/fi'
 import { AiOutlineDelete } from 'react-icons/ai'
 import axios from 'axios'
 import Spinner from '@/components/Spinner'
+import moment from 'moment'
 
 const HospitalFeedback = () => {
   const [feedback, setFeedback] = useState()
@@ -51,11 +52,11 @@ const HospitalFeedback = () => {
                       <tbody className='text-gray-800 text-sm'>
                         {feedback?.map((value, index) => {
                           return <tr key={index} className="bg-white border-b ">
-                            <td className="px-6 py-4">1</td>
+                            <td className="px-6 py-4">{index + 1}</td>
                             <td className="px-6 py-4"><b>{value?.fullname}</b><br /> {value?.email} <br /> {value?.phonenumber}</td>
                             <td className="px-6 py-4">{value.address}</td>
                             <td className="px-6 py-4">{value.description}</td>
-                            <td className="px-6 py-4">06-Sep-2023</td>
+                            <td className="px-6 py-4">{moment(value.timestamp).format("DD MMM YYYY")}</td>
                             <td className="px-6 py-4 h-24 flex flex-1 items-center gap-6"><FiMail className='text-lg text-accentGreen' />  <AiOutlineDelete className='text-lg text-customeRed font-medium' /> </td>
                           </tr>
                         })}

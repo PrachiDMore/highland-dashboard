@@ -38,6 +38,10 @@ const Sidebar = () => {
               title: "Postponed"
             },
             {
+              url: "/appointment/completed",
+              title: "Completed"
+            },
+            {
               url: "/appointment/doctors",
               title: "Doctors"
             }

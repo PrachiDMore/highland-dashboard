@@ -26,7 +26,10 @@ const HospitalNews = () => {
     })
       .then((res) => {
         setLoading(false)
-        setNews(res.data.response)
+        console.log(res.data.response)
+        setNews(res.data.response?.filter((data) => {
+          return !data.nursingNews
+        }))
       })
   }, [])
 
@@ -113,8 +116,8 @@ const HospitalNews = () => {
                       {
                         news?.map((value, index) => {
                           return <tr key={index} className="bg-white border-b">
-                            <td className="px-6 py-4">1</td>
-                            <td className="px-6 py-4"><img className='w-12 h-12 rounded-md' src={value.image} alt="" /></td>
+                            <td className="px-6 py-4">{index + 1}</td>
+                            <td className="px-6 py-4"><img className='w-12 h-12 rounded-md object-contain' src={value.image} alt="" /></td>
                             <td className="px-6 py-4">{value?.title}</td>
                             <td className="px-6 py-4">{moment(value.timestamp).format("DD MMM YYYY")}</td>
                             {/* <td className="px-6 py-4"><BsCheckCircle className='text-accentGreen text-lg' /></td> */}

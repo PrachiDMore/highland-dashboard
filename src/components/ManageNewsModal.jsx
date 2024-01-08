@@ -3,9 +3,11 @@ import Input from './Input'
 import Button from './Button'
 import axios from 'axios'
 import Spinner from './Spinner'
+import UploadComponent from './UploadComponent'
 
-const ManageNewsModal = ({ manageNews, setManageNews }) => {
+const ManageNewsModal = ({ manageNews, setManageNews, nursing = false }) => {
   const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState("")
   const initialState = {
     title: "",
     description: "",
@@ -17,6 +19,7 @@ const ManageNewsModal = ({ manageNews, setManageNews }) => {
   useEffect(() => {
     if (manageNews?.show && manageNews?.update) {
       setFormState(manageNews?.data)
+      setImage(manageNews?.data?.image)
     }
   }, [manageNews])
 
@@ -40,8 +43,9 @@ const ManageNewsModal = ({ manageNews, setManageNews }) => {
         data: {
           title: formState.title,
           description: formState.description,
-          image: "https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto/v1662679291/phone-image.png",
-          timestamp: Date.now()
+          image: image ? image : "",
+          timestamp: Date.now(),
+          nursingNews: nursing
         }
       })
         .then((res) => {
@@ -110,8 +114,7 @@ const ManageNewsModal = ({ manageNews, setManageNews }) => {
             </div>
 
             <div className="p-6 flex flex-col justify-center gap-3">
-              <img className='m-auto h-32 w-32 shadow-lg border rounded-lg' src={manageNews?.data?.image} alt="" />
-              <Input onChange={handleChange} id={"image"} textarea={false} type={"file"} className={""} />
+              <UploadComponent image={image} setImage={setImage} />
               <Input onChange={handleChange} value={formState.title} id={"title"} textarea={false} type={"text"} placeholder={"Enter title"} />
               <Input onChange={handleChange} value={formState.description} id={"description"} textarea={true} placeholder={"Enter description"} />
             </div>

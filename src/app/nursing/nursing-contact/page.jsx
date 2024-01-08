@@ -19,7 +19,9 @@ const NursingContact = () => {
     })
       .then((res) => {
         setLoading(false)
-        setContact(res.data.response)
+        setContact(res.data.response.sort((data1, data2) => {
+          return data2.timestamp - data1.timestamp
+        }))
       })
   }, [])
 

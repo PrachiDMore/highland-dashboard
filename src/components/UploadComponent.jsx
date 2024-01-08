@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { HiOutlineUpload } from "react-icons/hi"
 
 const UploadComponent = ({ image, setImage, type = "default", children }) => {
@@ -8,8 +8,8 @@ const UploadComponent = ({ image, setImage, type = "default", children }) => {
 	useEffect(() => {
 		cloudinaryRef.current = window.cloudinary;
 		widgetRef.current = cloudinaryRef.current.createUploadWidget({
-			cloudName: "dfncnjaz9",
-			uploadPreset: "hykcy6yp",
+			cloudName: "dsgsh512l",
+			uploadPreset: "nuikkoyi",
 			multiple: false,
 			showAdvancedOptions: false,
 			showUploadMoreButton: false,
@@ -29,7 +29,7 @@ const UploadComponent = ({ image, setImage, type = "default", children }) => {
 				{image?.length === 0 ? <div className='border flex justify-center items-center h-32 w-32 bg-white/10 rounded-lg'>
 					<HiOutlineUpload className='text-3xl' />
 				</div> : <img src={image} className='border object-cover h-32 w-32 rounded-lg' />}
-				<button type='button' className='mt-3 w-32 bg-lightgreen text-center px-4 py-2 rounded-lg hover:bg-darkgreen duration-300' onClick={() => widgetRef.current.open()}>
+				<button type='button' className='mt-3 w-32 bg-accentGreen text-center px-4 py-2 rounded-lg hover:bg-accentGreenHover text-white duration-300' onClick={() => widgetRef.current.open()}>
 					Upload
 				</button>
 			</div>

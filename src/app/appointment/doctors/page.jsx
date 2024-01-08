@@ -56,13 +56,13 @@ const Doctors = () => {
                   <tbody className='text-gray-800 text-sm'>
                     {
                       doctors?.map((value, index) => {
-                        return <tr key={index} className="bg-white border-b">
-                          <td className="px-6 py-4"><img className='w-14 h-14 rounded-full' src={value.image} alt="" /></td>
-                          <td className="px-6 py-4">{value.name}</td>
-                          <td className="px-6 py-4">{value.email}</td>
-                          <td className="px-6 py-4">{value.designation}</td>
-                          <td className="px-6 py-4">{moment(value.createdAt).format("DD MMM YYYY")}</td>
-                          <td className="px-6 py-4"><Button text={"Present"} /></td>
+                        return <tr key={index} className="bg-white border-b h-max">
+                          <td className="h-max px-6 py-4"><img className='w-14 h-14 rounded-full' src={value.image} alt="" /></td>
+                          <td className="h-max px-6 py-4">{value.name}</td>
+                          <td className="h-max px-6 py-4">{value.email}</td>
+                          <td className="h-max px-6 py-4">{value.designation}</td>
+                          <td className="h-max px-6 py-4">{moment(value.createdAt).format("DD MMM YYYY")}</td>
+                          <td className="h-max px-6 py-4"><Button text={"Present"} /></td>
                         </tr>
                       })
                     }

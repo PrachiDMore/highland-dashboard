@@ -28,7 +28,9 @@ const NursingNews = () => {
     })
       .then((res) => {
         setLoading(false)
-        setNews(res.data.response)
+        setNews(res.data.response?.filter((data) => {
+          return data.nursingNews
+        }))
       })
   }, [])
 
@@ -130,7 +132,7 @@ const NursingNews = () => {
         </div>
       </Layout>
       <NewsModal setShowNews={setShowNews} showNews={showNews} />
-      <ManageNewsModal key={Date.now()} setManageNews={setManageNews} manageNews={manageNews} />
+      <ManageNewsModal key={Date.now()} setManageNews={setManageNews} manageNews={manageNews} nursing={true}/>
     </>
   )
 }
