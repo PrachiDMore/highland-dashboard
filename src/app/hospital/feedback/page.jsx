@@ -30,7 +30,7 @@ const HospitalFeedback = () => {
           <div className='grid grid-cols-1 gap-3 custom-height-table-parent shadow-md rounded-md border'>
             <h2 className='border-b py-3 px-6 font-medium'>Feedbacks</h2>
             <div className='p-6'>
-              <div className=" overflow-x-auto custom-height-table ">
+              <div className="overflow-x-auto custom-height-table">
                 {
                   loading ?
                     <div class="w-full h-full flex items-center justify-center ">

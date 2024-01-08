@@ -131,7 +131,6 @@ const HospitalNews = () => {
         </div>
       </Layout>
       <NewsModal setShowNews={setShowNews} showNews={showNews} />
-      {/* <EditNewsModal setEditNews={setEditNews} editNews={editNews} /> */}
       <ManageNewsModal key={Date.now()} setManageNews={setManageNews} manageNews={manageNews} />
     </>
   )
